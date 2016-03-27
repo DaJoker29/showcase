@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
-import Links from "../Links";
+import { IndexLink, Link } from "react-router";
 
 export default class Nav extends React.Component {
     constructor() {
@@ -9,6 +8,8 @@ export default class Nav extends React.Component {
 
     render() {
         const { location } = this.props;
+        const indexClass = location.pathname === "/" ? "active" : "";
+        const quotesClass = location.pathname.match(/^\/quotes/) ? "active" : "";
 
         return (
             <nav class="navbar navbar-default visible-xs">
@@ -18,10 +19,12 @@ export default class Nav extends React.Component {
                             <span class="sr-only">Toggle Navigation</span>
                             <i class="fa fa-bars"></i>
                         </button>
-                        <div className="navbar-brand">Portfolio</div>
+                        <IndexLink class="navbar-brand" to="/">Portfolio</IndexLink>
                     </div>
                     <div class="navbar-collapse collapse" id="navbar-collapse">
-                        <Links ulClass="nav navbar-nav" location={location}/>
+                        <ul className="nav navbar-nav">
+                            <li class={quotesClass} ><Link to="quotes">Random Quotes</Link></li>
+                        </ul>
                     </div>
                 </div>
             </nav>
