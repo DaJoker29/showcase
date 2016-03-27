@@ -1,24 +1,27 @@
 import React from "react";
+import { Link } from "react-router";
+import Links from "../Links";
 
 export default class Nav extends React.Component {
+    constructor() {
+        super();
+    }
+
     render() {
+        const { location } = this.props;
+
         return (
             <nav class="navbar navbar-default visible-xs">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
                             <span class="sr-only">Toggle Navigation</span>
                             <i class="fa fa-bars"></i>
                         </button>
-                        <a href="#" class="navbar-brand">Portfolio</a>
+                        <div className="navbar-brand">Portfolio</div>
                     </div>
-                    <div class="collapse navbar-collapse" id="navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#">Random Quotes</a></li>
-                            <li><a href="#">Local Weather</a></li>
-                            <li><a href="#">Wikipedia Viewer</a></li>
-                            <li><a href="#">Scramble</a></li>
-                        </ul>
+                    <div class="navbar-collapse collapse" id="navbar-collapse">
+                        <Links ulClass="nav navbar-nav" location={location}/>
                     </div>
                 </div>
             </nav>

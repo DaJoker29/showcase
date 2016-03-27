@@ -2,21 +2,23 @@ import React from "react";
 
 import Nav from "../components/layout/Nav";
 import Sidebar from "../components/layout/Sidebar";
-import Content from "../components/layout/Content";
 
 export default class Layout extends React.Component {
-
-    constructor() {
-        super();
-    }
-
     render() {
+        const { location } = this.props;
+
         return (
             <div>
-                <Nav />
+                <Nav location={location}/>
                 <div id="wrapper">
-                    <Sidebar />
-                    <Content />
+                    <Sidebar location={location}/>
+                    <div id="page-content-wrapper">
+                        <div class="container-fluid">
+                            <div class="row">
+                                {this.props.children}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
