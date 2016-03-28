@@ -1,18 +1,48 @@
-import React from "react";
-
+import * as QuoteActions from "../actions/QuoteActions";
 import Quote from "../components/Quote";
-import QuotesStore from "../stores/QuotesStore";
+import QuoteStore from "../stores/QuoteStore";
+import React from "react";
 
 export default class Quotes extends React.Component {
     constructor() {
         super();
+        this.getQuote = this.getQuote.bind(this);
+        this.setFetching = this.setFetching.bind(this);
         this.state = {
-            quote: QuotesStore.getQuote()
+            fetching: false
         }
     }
 
+    componentWillMount() {
+        QuoteStore.on('received', this.getQuote);
+        QuoteStore.on('fetching', this.setFetching);
+    }
+
+    componentDidMount() {
+        QuoteActions.fetchQuote();
+    }
+
+    componentWillUnmount() {
+        QuoteStore.removeListener('received', this.getQuote);
+        QuoteStore.removeListener('fetching', this.setFetching);
+    }
+
+    getQuote() {
+       this.setState({
+            quote: QuoteStore.getQuote(),
+            fetching: false
+        })
+    }
+
+    setFetching() {
+        this.setState({
+            fetching: true
+        })
+    }
+
      render() {
-        const { text, author } = this.state.quote;
+        const { quote = {}, fetching } = this.state;
+
         return (
             <div className="row">
                 <div className="col-lg-12">
@@ -21,7 +51,7 @@ export default class Quotes extends React.Component {
                         <p class="lead">This page builds quotes.</p>
                     </div>
                     <div id="content">
-                        <Quote text={text} author={author}></Quote>
+                        <Quote text={quote.text} author={quote.author} fetching={fetching}></Quote>
                     </div>
                 </div>
             </div>
