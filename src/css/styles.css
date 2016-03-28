@@ -1,3 +1,20 @@
-.sidebar-nav li.active {
-    background-color: #333;
+.jumbotron,
+.well {
+    background-color: rgba(0, 0, 0, .4);
+}
+
+.text-black a,
+.text-black a:hover,
+.text-black a:active,
+.text-black a:focus,
+.text-black a:link {
+    color: #000 !important;
+}
+
+.bg-home {
+    background-color: #2b3e50;
+}
+
+.sidebar-nav li a:hover {
+    background: none;
 }

@@ -16,6 +16,7 @@ export default class Quotes extends React.Component {
     componentWillMount() {
         QuoteStore.on('received', this.getQuote);
         QuoteStore.on('fetching', this.setFetching);
+        document.body.classList.add('bg-success');
     }
 
     componentDidMount() {
@@ -25,6 +26,7 @@ export default class Quotes extends React.Component {
     componentWillUnmount() {
         QuoteStore.removeListener('received', this.getQuote);
         QuoteStore.removeListener('fetching', this.setFetching);
+        document.body.classList.remove('bg-success');
     }
 
     getQuote() {
@@ -47,8 +49,8 @@ export default class Quotes extends React.Component {
             <div className="row">
                 <div className="col-lg-12">
                     <div class="jumbotron">
-                        <h2>Quote Generator</h2>
-                        <p class="lead">This page builds quotes.</p>
+                        <p class="lead">This is an application I built as part of the <a href="http://www.freecodecamp.com" target="_blank">Free Code Camp</a> Front End Development Course. It takes quotes from an API (<a href="http://quotesondesign.com" target="_blank">Quotes on Design</a>) and displays them, allowing the user to tweet their favorite quotes. A simple AJAX design.
+                        </p>
                     </div>
                     <div id="content">
                         <Quote text={quote.text} author={quote.author} fetching={fetching}></Quote>

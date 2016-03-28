@@ -4,15 +4,16 @@ import { IndexLink, Link } from "react-router";
 export default class Sidebar extends React.Component {
     render() {
         const { location } = this.props;
-        const quotesClass = location.pathname.match(/^\/quotes/) ? "active" : "";
+        const homeClass = location.pathname === "/" ? "bg-home" : "";
+        const quotesClass = location.pathname.match(/^\/quotes/) ? "text-black bg-success" : "";
 
         return (
             <div id="sidebar-wrapper">
                 <ul className="sidebar-nav">
-                    <li class="sidebar-brand">
-                        <IndexLink to="/">Portfolio</IndexLink>
+                    <li class={`sidebar-brand ${homeClass}`}>
+                        <IndexLink to="/">Showcase</IndexLink>
                     </li>
-                <li class={quotesClass} ><Link to="quotes">Random Quotes</Link></li>
+                <li class={quotesClass}><Link to="quotes"><i className="fa fa-quote-left"></i> Quotes</Link></li>
                 </ul>
             </div>
         );

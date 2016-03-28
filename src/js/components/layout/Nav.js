@@ -23,7 +23,8 @@ export default class Nav extends React.Component {
                     </div>
                     <div class="navbar-collapse collapse" id="navbar-collapse">
                         <ul className="nav navbar-nav">
-                            <li class={quotesClass} ><Link to="quotes">Random Quotes</Link></li>
+                            <li class={quotesClass} ><Link to="quotes">
+                            <i className="fa fa-quote-left fa-fw"></i> Quotes</Link></li>
                         </ul>
                     </div>
                 </div>
