@@ -2,6 +2,11 @@ import * as QuoteActions from "../actions/QuoteActions";
 import React from "react";
 
 export default class Quote extends React.Component {
+    constructor() {
+        super();
+        this.fetchQuote = this.fetchQuote.bind(this);
+    }
+
     fetchQuote() {
         QuoteActions.fetchQuote();
     }

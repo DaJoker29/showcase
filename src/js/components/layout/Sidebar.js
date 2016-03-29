@@ -6,6 +6,7 @@ export default class Sidebar extends React.Component {
         const { location } = this.props;
         const homeClass = location.pathname === "/" ? "bg-home" : "";
         const quotesClass = location.pathname.match(/^\/quotes/) ? "text-black bg-success" : "";
+        const weatherClass = location.pathname.match(/^\/weather/) ? "text-black bg-info" : "";
 
         return (
             <div id="sidebar-wrapper">
@@ -14,6 +15,7 @@ export default class Sidebar extends React.Component {
                         <IndexLink to="/">Showcase</IndexLink>
                     </li>
                 <li class={quotesClass}><Link to="quotes"><i className="fa fa-quote-left"></i> Quotes</Link></li>
+                <li class={weatherClass}><Link to="weather"><i className="fa fa-cloud"></i> Weather</Link></li>
                 </ul>
             </div>
         );

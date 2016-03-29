@@ -44,6 +44,7 @@ export default class Quotes extends React.Component {
 
      render() {
         const { quote = {}, fetching } = this.state;
+        const { text, author } = quote;
 
         return (
             <div className="row">
@@ -53,7 +54,7 @@ export default class Quotes extends React.Component {
                         </p>
                     </div>
                     <div id="content">
-                        <Quote text={quote.text} author={quote.author} fetching={fetching}></Quote>
+                        <Quote text={text} author={author} fetching={fetching}></Quote>
                     </div>
                 </div>
             </div>
