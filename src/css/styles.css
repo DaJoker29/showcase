@@ -18,3 +18,7 @@
 .sidebar-nav li a:hover {
     background: none;
 }
+
+.cursor {
+    cursor: pointer;
+}
