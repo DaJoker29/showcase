@@ -6,7 +6,7 @@ export function fetchQuote() {
         type: "FETCH_QUOTE"
     });
 
-    axios.get('http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=')
+    axios.get('http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&cache=' + (Math.random()*10000000))
         .then(( response ) => {
             const { title, content } = response.data[0];
             const quote = {
