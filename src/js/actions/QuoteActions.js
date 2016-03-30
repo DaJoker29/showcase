@@ -1,5 +1,6 @@
 import axios from "axios";
 import dispatcher from "../dispatcher";
+import { unescapeHTML } from "../helpers";
 
 export function fetchQuote() {
     dispatcher.dispatch({
@@ -18,10 +19,4 @@ export function fetchQuote() {
         .catch(error => {
             dispatcher.dispatch({ type: "FETCH_ERR", error })
         });
-}
-
-function unescapeHTML (html) {
-    const element = document.createElement('textarea');
-    element.innerHTML = html;
-    return element.textContent;
 }

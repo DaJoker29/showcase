@@ -1,46 +1,13 @@
-import * as WeatherActions from "../actions/WeatherActions";
-import WeatherStore from "../stores/WeatherStore";
 import React from "react";
 
 export default class Weather extends React.Component {
+
     constructor() {
         super();
-        this.getWeather = this.getWeather.bind(this);
-        this.setFetching = this.setFetching.bind(this);
         this.toggleTemp = this.toggleTemp.bind(this);
         this.state = {
-            fetching: false,
             tempFlag: true
         }
-    }
-
-    componentWillMount() {
-        WeatherStore.on('received', this.getWeather);
-        WeatherStore.on('fetching', this.setFetching);
-        document.body.classList.add('bg-info');
-    }
-
-    componentDidMount() {
-        WeatherActions.fetchWeather();
-    }
-
-    componentWillUnmount() {
-        WeatherStore.removeListener('received', this.getWeather);
-        WeatherStore.removeListener('fetching', this.setFetching);
-        document.body.classList.remove('bg-info');
-    }
-
-    getWeather() {
-       this.setState({
-            weather: WeatherStore.getWeather(),
-            fetching: false
-        })
-    }
-
-    setFetching() {
-        this.setState({
-            fetching: true
-        })
     }
 
     toggleTemp() {
@@ -49,11 +16,12 @@ export default class Weather extends React.Component {
         })
     }
 
-     render() {
-        const { weather = {}, fetching, tempFlag } = this.state;
-        const loading = !fetching || weather.icon; ;
-        const tempString = tempFlag ? weather.cTemp : weather.fTemp;
+    render() {
+        const { loading, weather} = this.props;
+        const { tempFlag } = this.state;
         const tempLabel = tempFlag ? 'C' : 'F';
+        const tempString = tempFlag ? weather.cTemp : weather.fTemp;
+        console.log( weather );
 
         return (
             <div className="row">
@@ -63,10 +31,12 @@ export default class Weather extends React.Component {
                         </p>
                     </div>
                     <div id="content">
-                        <img src="cube.gif" alt="" className={`center-block ${ loading ? 'hide' : ''}`}/>
-                        <div class={`text-center ${ loading ? '' : 'hide'}`}>
-                            <img src={`http://openweathermap.org/img/w/${weather.icon}.png`} className="center-block"/>
-                            <h3 class="cursor" onClick={this.toggleTemp.bind(this)}>
+                        <div className="text-center">
+                            <i className={`hide fa fa-spinner fa-spin fa-5x ${loading ? 'show-inline' : ''}`}></i>
+                        </div>
+                        <div class={`text-center hide ${ loading ? '' : 'show'}`}>
+                            <img src={`http://openweathermap.org/img/w/${weather.icon || '000'}.png`} className="center-block"/>
+                            <h3 class="cursor" onClick={this.toggleTemp}>
                                 {tempString}<sup>o</sup>{tempLabel}
                             </h3>
                             <div>
@@ -85,6 +55,6 @@ export default class Weather extends React.Component {
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 }

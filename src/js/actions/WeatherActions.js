@@ -1,5 +1,6 @@
 import axios from "axios";
 import dispatcher from "../dispatcher";
+import { toFahr } from "../helpers";
 
 export function fetchWeather() {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -32,9 +33,4 @@ export function fetchWeather() {
                 type: "FETCH_WEATHER"
             });
     });
-
-}
-
-function toFahr( celcius ) {
-    return (celcius * 1.8) + 32;
 }
