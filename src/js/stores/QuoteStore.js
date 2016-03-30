@@ -1,23 +1,25 @@
-import dispatcher from "../dispatcher";
-import { EventEmitter } from "events";
+import dispatcher from '../dispatcher';
+import { EventEmitter } from 'events';
 
 class QuoteStore extends EventEmitter {
-    getQuote() {
-        return this.quote;
-    }
+  getQuote() {
+    return this.quote;
+  }
 
-    handleAction(action) {
-        switch( action.type ) {
-            case "FETCH_QUOTE":
-                this.emit("fetching")
-            case "FETCH_ERR":
-                break;
-            case "NEW_QUOTE":
-                this.quote = action.quote;
-                this.emit("received")
-                break;
-        }
+  handleAction(action) {
+    switch (action.type) {
+      case 'NEW_QUOTE':
+        this.quote = action.quote;
+        this.emit('received');
+        break;
+      case 'FETCH_QUOTE':
+        this.emit('fetching');
+        break;
+      case 'FETCH_ERR':
+      default:
+        break;
     }
+  }
 }
 
 const quoteStore = new QuoteStore;
