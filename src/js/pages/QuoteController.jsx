@@ -9,7 +9,7 @@ export default class QuoteController extends React.Component {
     this.setQuote = this.setQuote.bind(this);
     this.setFetching = this.setFetching.bind(this);
     this.state = {
-      fetching: false
+      fetching: false,
     };
   }
 
@@ -32,13 +32,13 @@ export default class QuoteController extends React.Component {
   setQuote() {
     this.setState({
       quote: QuoteStore.getQuote(),
-      fetching: false
+      fetching: false,
     });
   }
 
   setFetching() {
     this.setState({
-      fetching: true
+      fetching: true,
     });
   }
 
@@ -47,7 +47,12 @@ export default class QuoteController extends React.Component {
     const { text, author } = quote;
 
     return (
-            <Quote text={text} author={author} fetching={fetching} clickAction={QuoteActions.fetchQuote}></Quote>
-        );
+      <Quote
+        text={text}
+        author={author}
+        fetching={fetching}
+        clickAction={QuoteActions.fetchQuote}
+      />
+    );
   }
 }

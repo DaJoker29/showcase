@@ -9,11 +9,11 @@ import WeatherController from './pages/WeatherController';
 
 const app = document.getElementById('app');
 ReactDOM.render(
-    <Router history={hashHistory}>
-        <Route path="/" component={Layout}>
-            <IndexRoute component={Home}></IndexRoute>
-            <Route path="quotes" component={QuoteController}></Route>
-            <Route path="weather" component={WeatherController}></Route>
-        </Route>
-    </Router>,
+  <Router history={hashHistory}>
+    <Route path="/" component={Layout}>
+      <IndexRoute component={Home} />
+      <Route path="quotes" component={QuoteController} />
+      <Route path="weather" component={WeatherController} />
+    </Route>
+  </Router>,
 app);

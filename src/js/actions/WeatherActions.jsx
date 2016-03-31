@@ -3,7 +3,7 @@ import dispatcher from '../dispatcher';
 import { toFahr } from '../helpers';
 
 export function fetchWeather() {
-  navigator.geolocation.getCurrentPosition(function (position) {
+  navigator.geolocation.getCurrentPosition(position => {
     const { latitude: lat, longitude: lon } = position.coords;
     const key = '208f4ab7f38bd7b2f905d78ec3d83724';
     const units = 'metric';
@@ -20,7 +20,7 @@ export function fetchWeather() {
                 humidity: main.humidity,
                 country: sys.country,
                 description: weather[0].description,
-                icon: weather[0].icon
+                icon: weather[0].icon,
               };
 
               dispatcher.dispatch({ type: 'NEW_WEATHER', weather: obj });
@@ -30,7 +30,7 @@ export function fetchWeather() {
             });
 
     dispatcher.dispatch({
-      type: 'FETCH_WEATHER'
+      type: 'FETCH_WEATHER',
     });
   });
 }

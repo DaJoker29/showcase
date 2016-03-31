@@ -32,13 +32,13 @@ export default class WeatherController extends React.Component {
   getWeather() {
     this.setState({
       weather: WeatherStore.getWeather(),
-      fetching: false
+      fetching: false,
     });
   }
 
   setFetching() {
     this.setState({
-      fetching: true
+      fetching: true,
     });
   }
 
@@ -47,7 +47,7 @@ export default class WeatherController extends React.Component {
     const loading = fetching || !weather.icon;
 
     return (
-            <Weather loading={loading} weather={weather} />
-        );
+      <Weather loading={loading} weather={weather} />
+    );
   }
 }

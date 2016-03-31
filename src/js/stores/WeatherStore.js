@@ -10,11 +10,13 @@ class WeatherStore extends EventEmitter {
     switch (action.type) {
       case 'FETCH_WEATHER':
         this.emit('fetching');
-      case 'FETCH_WEATHER_ERR':
         break;
       case 'NEW_WEATHER':
         this.weather = action.weather;
         this.emit('received');
+        break;
+      case 'FETCH_WEATHER_ERR':
+      default:
         break;
     }
   }

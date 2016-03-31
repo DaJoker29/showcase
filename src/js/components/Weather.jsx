@@ -37,7 +37,7 @@ export default class Weather extends React.Component {
             </div>
 
             <div className={`text-center hide ${loading ? '' : 'show'}`}>
-              <img src={`http://openweathermap.org/img/w/${weather.icon || '000'}.png`} className="center-block" />
+              <img src={`http://openweathermap.org/img/w/${weather.icon || '01n'}.png`} className="center-block" />
               <h3 className="cursor" onClick={this.toggleTemp}>
                 {tempString}<sup>o</sup>{tempLabel}
               </h3>
