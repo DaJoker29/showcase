@@ -22,3 +22,7 @@
 .cursor {
     cursor: pointer;
 }
+
+.show-inline {
+    display: inline-block !important;
+}
